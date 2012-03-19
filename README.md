@@ -38,5 +38,5 @@ UCloud(CloudStack) Python Client
 
 0.1A : 2012. 03.19 Release
 
-[채널바로가기](http://www.ironbag.net/page/a7aaced4f59f4e51b805f888f3f975c8)
+[채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
 ===
