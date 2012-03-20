@@ -15,7 +15,7 @@ COMMANDS = {
         "required" : (),
     },
 
-    "deployVritualMachine": {
+    "deployVirtualMachine": {
         "name"     : "deployVirtualMachine",
         "default"  : {
             "serviceofferingid" : '75',
