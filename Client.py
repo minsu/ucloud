@@ -16,11 +16,14 @@ import re
 
 UCLOUD_API_KEY = ''
 UCLOUD_SECRET  = ''
-UCLOUD_API_URL = 'https://api.ucloudbiz.olleh.com/server/v1/client/api'
+UCLOUD_API_URLS = {
+    'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
+    'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
+}
 
 class Client(object):
-    def __init__(self, api_key=UCLOUD_API_KEY, secret=UCLOUD_SECRET):
-        self.api_url = UCLOUD_API_URL
+    def __init__(self, api_type = 'server', api_key=UCLOUD_API_KEY, secret=UCLOUD_SECRET):
+        self.api_url = UCLOUD_API_URLS[api_type]
         self.api_key = api_key
         self.secret  = secret
 
