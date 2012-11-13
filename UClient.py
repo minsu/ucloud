@@ -54,26 +54,27 @@ class UClient(Client):
 """ Command Line Interface """
 
 def usage_out():
-    print "usage: python UClient.py command args"
+    print "usage: python UClient.py api_type command args"
+    print "         api_type : server or lb(loadbalancer)"
     exit(-1)
 
 if __name__ == "__main__":
 
     import sys
 
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 3:
         usage_out()
 
     args = {}
-    if len(sys.argv) > 2:
-        args = dict(arg.split('=') for arg in sys.argv[2:])
+    if len(sys.argv) > 3:
+        args = dict(arg.split('=') for arg in sys.argv[3:])
 
-    client  = UClient()
+    client  = UClient(api_type=sys.argv[1])
 
     # command validation
-    command = COMMANDS.get(sys.argv[1], None)
+    command = COMMANDS.get(sys.argv[2], None)
     if not command:
-        raise RuntimeError('invalid command : %s' % sys.argv[1]) 
+        raise RuntimeError('invalid command : %s' % sys.argv[2])
 
     # param validation
     params = command["default"]
