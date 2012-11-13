@@ -7,10 +7,12 @@ UCloud(CloudStack) Python Client
 
 별도 설치없이 Git 클론한 후에 해당 폴더에서 명령을 실행하거나 해당 파이썬 모듈을 `import UClient` 한 후에 사용합니다. 명령어 실행은 다음의 Example과 같이 Command Line 환경에서 실행 합니다.
 
-    python UClient.py listVirtualMachines
-    python UClient.py deployVirtualMachine serviceofferingid=75 templateid=845 zoneid=2 diskofferingid=38 usageplantype=hourly
+    python UClient.py server listVirtualMachines
+    python UClient.py server deployVirtualMachine serviceofferingid=75 templateid=845 zoneid=2 diskofferingid=38 usageplantype=hourly
     ...
-    python UClient.py queryAsyncJobResult jobid=19993
+    python UClient.py server queryAsyncJobResult jobid=19993
+
+    python UClient.py lb listLoadBalancers
 
 ### 주의사항
 
@@ -25,6 +27,7 @@ UCloud(CloudStack) Python Client
 ### 지원하는 명령들
 
 유클라우드 서버 API 전체가 사용가능합니다, 테스트 해 본 것은 VM 관련한 명령과 Port Forwarding 관련 명령 뿐입니다.
+유클라우드 로드밸런서 API 지원이 추가되었습니다. (2012. 11. 13)
 
 ### 기본값 지정을 통한 편리한 사용
 
@@ -36,7 +39,8 @@ UCloud(CloudStack) Python Client
 
 ### 버전
 
-0.1A : 2012. 03.19 Release
+0.1A : 2012. 03. 19 Release
+0.2A : 2012. 11. 13
 
 [채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
 ===
