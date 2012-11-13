@@ -224,4 +224,86 @@ COMMANDS = {
         "default"  : {},
         "required" : ("jobid",),
     },
+
+
+
+
+    #-------------------------------------------------------
+    # Load Balancer API
+    #-------------------------------------------------------
+
+    #-------------------------------------------------------
+    # LoadBalancer
+    #-------------------------------------------------------
+    "createLoadBalancer": {
+        "name"     : "createLoadBalancer",
+        "default"  : {
+            "bandwidth" : "100",
+            "loadbalanceroption": "roundrobin",
+        },
+        "required" : (
+            "name",
+            "bandwidth",
+            "loadbalanceroption",
+            "serviceport",
+            "infourl",
+        ),
+    },
+
+    "deleteLoadBalancer": {
+        "name"     : "deleteLoadBalancer",
+        "default"  : {},
+        "required" : (
+            "loadbalancerid",
+        ),
+    },
+
+    "listLoadBalancers": {
+        "name"     : "listLoadBalancers",
+        "default"  : {},
+        "required" : (),
+    },
+
+    "updateLoadBalancer": {
+        "name"     : "updateLoadBalancer",
+        "default"  : {
+            "loadbalanceroption" : "roundrobin",
+        },
+        "required" : (
+            "loadbalancerid",
+            "loadbalanceroption",
+        ),
+    },
+
+    #-------------------------------------------------------
+    # Service Resource
+    #-------------------------------------------------------
+    "addLoadBalancerWebServer": {
+        "name"     : "addLoadBalancerWebServer",
+        "default"  : {},
+        "required" : (
+            "loadbalancerid",
+            "virtualmachineid",
+            "ipaddressid",
+            "publicport",
+            "privateport",
+        ),
+    },
+
+    "listLoadBalancerWebServers": {
+        "name"     : "listLoadBalancerWebServers",
+        "default"  : {},
+        "required" : (
+            "loadbalancerid",
+        ),
+    },
+
+    "removeLoadBalancerWebServer": {
+        "name"     : "removeLoadBalancerWebServer",
+        "default"  : {},
+        "required" : (
+            "serviceid",
+        ),
+    },
+
 }
