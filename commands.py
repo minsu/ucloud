@@ -91,7 +91,7 @@ COMMANDS = {
         "required" : ("id", "virtualmachineid"),
     },
 
-    "listVolume": {
+    "listVolumes": {
         "name"     : "listVolumes",
         "default"  : {},
         "required" : (),
