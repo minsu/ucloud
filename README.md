@@ -14,6 +14,8 @@ UCloud(CloudStack) Python Client
 
     python UClient.py lb listLoadBalancers
 
+    python UClient.py waf listWAFs
+
 ### 주의사항
 
 프로그램 사용상 주의할 점들입니다.
@@ -30,9 +32,11 @@ UCloud(CloudStack) Python Client
 
 유클라우드 로드밸런서 API 지원이 추가되었습니다. (2012. 11. 13)
 
+유클라우드 웹 방화벽 API 지원이 추가되었습니다. (2013. 02. 20)
+
 ### 기본값 지정을 통한 편리한 사용
 
-`commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 `Ubuntu 11.04, 1GB, 100GB` 시간제 요금이 들어가 있습니다.
+`commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 kr-1b 존에 `Ubuntu 11.04 32bit, 1vCore, 1GB RAM, 100GB Disk` 시간제 요금이 들어가 있습니다.
 
 ### 사용자 포럼
 
@@ -43,6 +47,8 @@ UCloud(CloudStack) Python Client
 0.1A : 2012. 03. 19 Release
 
 0.2A : 2012. 11. 13
+
+0.3A : 2013. 02. 20
 
 [채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
 ===
