@@ -14,11 +14,12 @@ import hashlib
 import json
 import re
 
-UCLOUD_API_KEY = ''
-UCLOUD_SECRET  = ''
+UCLOUD_API_KEY = 'YOU_MUST_ENTER_YOUR_API_KEY_HERE_!'
+UCLOUD_SECRET  = 'YOU_MUST_ENTER_YOUR_SECRET_KEY_HERE_!'
 UCLOUD_API_URLS = {
     'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
     'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
+    'waf'    : 'https://api.ucloudbiz.olleh.com/waf/v1/client/api',
 }
 
 class Client(object):

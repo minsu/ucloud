@@ -18,10 +18,10 @@ COMMANDS = {
     "deployVirtualMachine": {
         "name"     : "deployVirtualMachine",
         "default"  : {
-            "serviceofferingid" : '75',
-            "templateid"        : '845',
-            "zoneid"            : '2',
-            "diskofferingid"    : '38',
+            "serviceofferingid" : "c504e367-20d6-47c6-a82c-183b12d357f2",
+            "templateid"        : "142bf958-39a8-4e2e-973a-464ad814da96",
+            "zoneid"            : "9845bd17-d438-4bde-816d-1b12f37d5080",
+            "diskofferingid"    : "87c0a6f6-c684-4fbe-a393-d8412bcf788d",
             "usageplantype"     : 'hourly',
         },
         "required" : (
@@ -75,7 +75,9 @@ COMMANDS = {
 
     "createVolume": {
         "name"     : "createVolume",
-        "default"  : {"zoneid": 2},
+        "default"  : {
+            "zoneid": "9845bd17-d438-4bde-816d-1b12f37d5080"
+        },
         "required" : ("name", "zoneid", "diskofferingid"),
     },
 
@@ -88,7 +90,7 @@ COMMANDS = {
     "detachVolume": {
         "name"     : "detachVolume",
         "default"  : {},
-        "required" : ("id", "virtualmachineid"),
+        "required" : (),
     },
 
     "listVolumes": {
@@ -155,7 +157,9 @@ COMMANDS = {
 
     "associateIpAddress": {
         "name"     : "associateIpAddress",
-        "default"  : {},
+        "default"  : {
+            "zoneid" : "9845bd17-d438-4bde-816d-1b12f37d5080",
+        },
         "required" : ("zoneid",),
     },
 
@@ -305,5 +309,115 @@ COMMANDS = {
             "serviceid",
         ),
     },
+
+
+
+
+    #-------------------------------------------------------
+    # WAF API
+    #-------------------------------------------------------
+
+    #-------------------------------------------------------
+    # WAF
+    #-------------------------------------------------------
+    "createWAF": {
+        "name"     : "createWAF",
+        "default"  : {
+            "type": "single",   # single | dual
+            "spec": "basic",    # basic | standard | advanced | premium
+            "waf1consoleport": "5950",
+            "waf1SSHport": "5951",
+            "waf1DBport": "5952",
+        },
+        "required" : (
+            "name",
+            "type",
+            "spec",
+            "zoneid",
+            "waf1consoleport",
+            "waf1SSHport",
+            "waf1DBport",
+        ),
+    },
+
+    "deleteWAF": {
+        "name"     : "deleteWAF",
+        "default"  : {},
+        "required" : (
+            "id",
+        ),
+    },
+
+    "listWAFs": {
+        "name"     : "listWAFs",
+        "default"  : {},
+        "required" : (),
+    },
+
+    #-------------------------------------------------------
+    # Web Server Resource
+    #-------------------------------------------------------
+    "addWAFWebServer": {
+        "name"     : "addWAFWebServer",
+        "default"  : {
+            "sslMode": "disabled",  # disabled | sslthru | sslterm
+        },
+        "required" : (
+            "id",
+            "virtualmachineid",
+            "webServerPort",
+            "proxyPort1",
+            "sslMode",
+        ),
+    },
+
+    "listWAFWebServers": {
+        "name"     : "listWAFWebServers",
+        "default"  : {},
+        "required" : (
+            "id",
+        ),
+    },
+
+    "removeWAFWebServer": {
+        "name"     : "removeWAFWebServer",
+        "default"  : {},
+        "required" : (
+            "id",
+            "webserverresourceid",
+        ),
+    },
+
+    #-------------------------------------------------------
+    # Web Site Resource
+    #-------------------------------------------------------
+    "addWAFWebSite": {
+        "name"     : "addWAFWebSite",
+        "default"  : {},
+        "required" : (
+            "id",
+            "sitename",
+            "port",
+            "policyNum",    # 0 | 1 | 2 | 3
+        ),
+    },
+
+    "listWAFWebSites": {
+        "name"     : "listWAFWebSites",
+        "default"  : {},
+        "required" : (
+            "id",
+        ),
+    },
+
+    "removeWAFWebSite": {
+        "name"     : "removeWAFWebSite",
+        "default"  : {},
+        "required" : (
+            "id",
+            "websiteid",
+        ),
+    },
+
 
 }
