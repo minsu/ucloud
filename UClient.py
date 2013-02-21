@@ -36,16 +36,28 @@ class UClient(Client):
 
             if (command == 'listPortForwardingRules'):
                 print "%-36s %-36s %-36s %6s %7s %s" % (
-                    "IP ID", "RULE ID", "VM-ID", "PUBLIC", "PRIVATE", "VM"
+                    "RULE ID", "IP ID", "VM ID", "PUBLIC", "PRIVATE", "VM"
                 )
                 for idx, rule in enumerate(response['portforwardingrule']):
                     print "%36s %36s %36s %6s %7s %s" % (
-                        rule.get('ipaddressid', ''),
                         rule.get('id', ''),
+                        rule.get('ipaddressid', ''),
                         rule.get('virtualmachineid', ''),
                         rule.get('publicport', ''),
                         rule.get('privateport', ''),
                         rule.get('virtualmachinedisplayname', '')
+                    )
+                exit(0)
+
+            if (command == 'listPublicIpAddresses'):
+                print "%-15s %-36s %s" % (
+                    "IP", "ID", "ZONE"
+                )
+                for idx, rule in enumerate(response['publicipaddress']):
+                    print "%-15s %36s %s" % (
+                        rule.get('ipaddress'),
+                        rule.get('id'),
+                        rule.get('zonename')
                     )
                 exit(0)
 
@@ -57,7 +69,6 @@ class UClient(Client):
 def usage_out():
     print "usage: python UClient.py api_type command args"
     print "         api_type : server or lb(loadbalancer) or waf"
-    exit(-1)
 
 if __name__ == "__main__":
 
@@ -65,6 +76,7 @@ if __name__ == "__main__":
 
     if len(sys.argv) < 3:
         usage_out()
+        exit(-1)
 
     args = {}
     if len(sys.argv) > 3:
