@@ -384,7 +384,7 @@ COMMANDS = {
         "default"  : {},
         "required" : (
             "id",
-            "webserverresourceid",
+            "webserverid",
         ),
     },
 
