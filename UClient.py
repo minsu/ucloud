@@ -68,7 +68,7 @@ class UClient(Client):
 
 def usage_out():
     print "usage: python UClient.py api_type command args"
-    print "         api_type : server or lb(loadbalancer) or waf"
+    print "         api_type : server or lb(loadbalancer) or waf or watch or package"
 
 if __name__ == "__main__":
 
