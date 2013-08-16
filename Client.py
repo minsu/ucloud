@@ -5,7 +5,8 @@
 # Copyright 2012 Netsco Inc.
 # Copyright 2012 Minsu Kang
 
-from urllib import quote_plus as quote
+from urllib import quote as quote
+#from urllib import quote_plus as quote
 from urllib2 import urlopen, HTTPError
 from base64 import b64encode
 
