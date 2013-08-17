@@ -38,10 +38,6 @@ UCloud(CloudStack) Python Client
 
 `commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 kr-1b 존에 `Ubuntu 11.04 32bit, 1vCore, 1GB RAM, 100GB Disk` 시간제 요금이 들어가 있습니다.
 
-### 사용자 포럼
-
-유클라우드 서버 API 사용자 채널이 [아이언백](http://www.ironbag.net)에 개설되어 있으며 모든 문의는 해당 채널을 통해 받습니다. 또한 관련한 팁이나 사용담 등을 서로 공유하였으면 하는 바램입니다.
-
 ### 버전
 
 0.1A : 2012. 03. 19 Release
@@ -49,6 +45,3 @@ UCloud(CloudStack) Python Client
 0.2A : 2012. 11. 13
 
 0.3A : 2013. 02. 20
-
-[채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
-===
