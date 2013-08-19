@@ -15,6 +15,25 @@ UCloud(CloudStack) Python Client
     python UClient.py lb listLoadBalancers
 
     python UClient.py waf listWAFs
+    
+### 코드로 사용하기
+
+파이썬 모듈로 사용할때에는 다음과 같이 사용하면 됩니다.
+
+```
+import json
+import UClient
+
+client = UClient.UClient(api_type="server", api_key="API_KEY_HERE", secret="SECRET_KEY_HERE")
+params = {
+  "parameter1":"value1",
+}
+post_data = {
+  "body1": "longbody1",
+}
+resp = client.run("Command", params, post=post_data) # POST 로 넘기는 경우
+resp = client.run("Command", params) # POST를 쓰지 않는 경우
+```
 
 ### 주의사항
 
@@ -34,6 +53,8 @@ UCloud(CloudStack) Python Client
 
 유클라우드 웹 방화벽 API 지원이 추가되었습니다. (2013. 02. 20)
 
+유클라우드 Package API 지원이 추가 되었습니다. (2013. 08. 19)
+
 ### 기본값 지정을 통한 편리한 사용
 
 `commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 kr-1b 존에 `Ubuntu 11.04 32bit, 1vCore, 1GB RAM, 100GB Disk` 시간제 요금이 들어가 있습니다.
@@ -49,6 +70,8 @@ UCloud(CloudStack) Python Client
 0.2A : 2012. 11. 13
 
 0.3A : 2013. 02. 20
+
+0.3A-Forked-ziozzang : 2013. 08. 19
 
 [채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
 ===
