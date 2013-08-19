@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 #
 # Copyright 2012 Netsco Inc.
+# Copyright 2013 Jioh L. Jung (ziozzang@gmail.com)
 
 COMMANDS = {
 
