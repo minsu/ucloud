@@ -6,7 +6,6 @@
 # Copyright 2012 Minsu Kang
 
 from urllib import quote as quote
-#from urllib import quote_plus as quote
 from urllib2 import urlopen, HTTPError
 from base64 import b64encode
 
@@ -40,7 +39,7 @@ class Client(object):
         args['apiKey']   = self.api_key
 
         query = '&'.join(
-            '='.join([k, quote(args[k])]) for k in sorted(args.keys()))
+            '='.join([k, quote(args[k])]) for k in sorted(args.keys(), key=str.lower))
         
         signature = b64encode(hmac.new(
                 self.secret,
