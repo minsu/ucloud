@@ -4,9 +4,10 @@
 #
 # Copyright 2012 Netsco Inc.
 # Copyright 2012 Minsu Kang
+# Copyright 2013 Jioh L. Jung
 
 from urllib import quote as quote
-from urllib2 import urlopen, HTTPError
+from urllib2 import urlopen, Request, HTTPError
 from base64 import b64encode
 
 import hmac
@@ -30,7 +31,7 @@ class Client(object):
         self.api_key = api_key
         self.secret  = secret
 
-    def request(self, command, args={}):
+    def request(self, command, args={}, post=None):
         if not command:
             raise RuntimeError('Command Missing !!')
 
@@ -63,8 +64,17 @@ class Client(object):
         query += '&signature=' + quote(signature)
         #-------------------------------------------------------
 
+        urls = self.api_url + '?' + query
+        if post is not None:
+            post_enc = '&'.join(
+                '='.join([k, quote(post[k])]) for k in sorted(post.keys()))
+            req_data = Request(urls, post_enc)
+            req_data.add_header('Content-type', 'application/x-www-form-urlencoded')
+        else:
+            req_data = Request(urls)
+
         try:
-            response = urlopen(self.api_url + '?' + query)
+            response = urlopen(req_data)
         except HTTPError as e:
             raise RuntimeError("%s" % e)
 
