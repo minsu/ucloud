@@ -6,7 +6,7 @@
 # Copyright 2012 Minsu Kang
 # Copyright 2013 Jioh L. Jung
 
-from urllib import quote as quote
+from urllib import quote
 from urllib2 import urlopen, Request, HTTPError
 from base64 import b64encode
 
