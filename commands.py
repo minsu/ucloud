@@ -504,7 +504,7 @@ COMMANDS = {
     },
 
     "deleteTemplate": {
-        "name"     : "deleteTemplates",
+        "name"     : "deleteTemplate",
         "default"  : {},
         "required" : (
             "TemplateId",
