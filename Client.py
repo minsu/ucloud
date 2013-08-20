@@ -31,12 +31,12 @@ class Client(object):
         self.api_key = api_key
         self.secret  = secret
 
-    def request(self, command, args={}, post=None):
+    def request(self, command, args={}, post=None, debug=False, resptype="json"):
         if not command:
             raise RuntimeError('Command Missing !!')
 
         args['command']  = command
-        args['response'] = 'json'
+        args['response'] = resptype
         args['apiKey']   = self.api_key
 
         query = '&'.join(
@@ -47,6 +47,13 @@ class Client(object):
                 msg=query.lower(),
                 digestmod=hashlib.sha1
         ).digest())
+
+        if debug:
+            print "Server: '%s'" % (self.api_url)
+            print "Query (for Signiture):"
+            print query
+            print "Sigature:"
+            print signature
 
         #-------------------------------------------------------
         # reconstruct : command + params + api_key + signature
@@ -62,6 +69,10 @@ class Client(object):
 
         query += '&' + api_key
         query += '&signature=' + quote(signature)
+
+        if debug:
+            print "Query (Reconstructed/LEN: %d):" % len(query)
+            print query
         #-------------------------------------------------------
 
         urls = self.api_url + '?' + query
@@ -70,6 +81,10 @@ class Client(object):
                 '='.join([k, quote(post[k])]) for k in sorted(post.keys()))
             req_data = Request(urls, post_enc)
             req_data.add_header('Content-type', 'application/x-www-form-urlencoded')
+            if debug:
+                print "POST(DICT/LEN: %d): " % (len(post)) , post
+                print "POST(Encrypted/LEN: %d): " % (len(post_enc)) , post_enc
+                print "HEADERS: ", req_data.headers
         else:
             req_data = Request(urls)
 
@@ -80,7 +95,12 @@ class Client(object):
             print e.read()
             raise RuntimeError("%s" % e)
 
-        decoded  = json.loads(response.read())
+        content = response.read()
+
+        if resptype != "json":
+            return content
+
+        decoded  = json.loads(content)
 
         # response top node check
         response_header = command.lower() + 'response'

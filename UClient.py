@@ -10,8 +10,8 @@ class UClient(Client):
 
     """ UCloud Client """
 
-    def run(self, command, args={}, post=None):
-        response = self.request(command, args, post=post)
+    def run(self, command, args={}, post=None, debug=False, resptype="json"):
+        response = self.request(command, args, post=post, debug=debug, resptype=resptype)
         if response is None:
             raise RuntimeError(
                 'Response Error : %s' % json.dumps(response, indent=4))
