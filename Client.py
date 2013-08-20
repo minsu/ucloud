@@ -76,6 +76,8 @@ class Client(object):
         try:
             response = urlopen(req_data)
         except HTTPError as e:
+            # Printing Debugging Indformation.
+            print e.read()
             raise RuntimeError("%s" % e)
 
         decoded  = json.loads(response.read())
