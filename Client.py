@@ -14,9 +14,15 @@ import hmac
 import hashlib
 import json
 import re
+import os
 
 UCLOUD_API_KEY = 'YOU_MUST_ENTER_YOUR_API_KEY_HERE_!'
 UCLOUD_SECRET  = 'YOU_MUST_ENTER_YOUR_SECRET_KEY_HERE_!'
+if "UCLOUD_API_KEY" in os.environ:
+    UCLOUD_API_KEY = os.environ["UCLOUD_API_KEY"]
+if "UCLOUD_SECRET" in os.environ:
+    UCLOUD_SECRET = os.environ["UCLOUD_SECRET"]
+
 UCLOUD_API_URLS = {
     'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
     'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
