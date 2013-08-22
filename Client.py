@@ -24,11 +24,26 @@ if "UCLOUD_SECRET" in os.environ:
     UCLOUD_SECRET = os.environ["UCLOUD_SECRET"]
 
 UCLOUD_API_URLS = {
+    # Server/CloudStack http://developer.ucloudbiz.olleh.com/doc/cloudstack/
     'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
+    # Loadbalancer http://developer.ucloudbiz.olleh.com/doc/loadbalancer/
     'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
+    # Web Application Firewall http://developer.ucloudbiz.olleh.com/doc/waf/
     'waf'    : 'https://api.ucloudbiz.olleh.com/waf/v1/client/api',
+    # Watch http://developer.ucloudbiz.olleh.com/doc/watch/
     'watch'  : 'https://api.ucloudbiz.olleh.com/watch/v1/client/api',
+    # Packaging http://developer.ucloudbiz.olleh.com/doc/packaging/
     'package': 'https://api.ucloudbiz.olleh.com/packaging/v1/client/api',
+    # AutoScaling http://developer.ucloudbiz.olleh.com/doc/autoscaling/
+    'as'     : 'https://api.ucloudbiz.olleh.com/autoscaling/v1/client/api',
+    # CDN http://developer.ucloudbiz.olleh.com/doc/CDN/
+    'cdn'    : 'https://api.ucloudbiz.olleh.com/cdn/v1/client/api',
+    # Messaging http://developer.ucloudbiz.olleh.com/doc/messaging/
+    'msg'    : 'https://api.ucloudbiz.olleh.com/messaging/v1/client/api',
+    # NAS Service http://developer.ucloudbiz.olleh.com/doc/nas/
+    'nas'    : 'https://api.ucloudbiz.olleh.com/nas/v1/client/api',
+    # uCloud DB/RDBAAS http://developer.ucloudbiz.olleh.com/doc/DB/
+    'db'     : 'https://api.ucloudbiz.olleh.com/db/v1/client/api',
 }
 
 class Client(object):
