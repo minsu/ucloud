@@ -88,14 +88,21 @@ if __name__ == "__main__":
     # command validation
     command = COMMANDS.get(sys.argv[2], None)
     if not command:
-        raise RuntimeError('invalid command : %s' % sys.argv[2])
+        # cannot find Command from command.py
+        #raise RuntimeError('invalid command : %s' % sys.argv[2])
+        params = {}
+        params.update(args)
+        
+        client.run(sys.argv[2], params)
 
-    # param validation
-    params = command["default"]
-    params.update(args)
+    else:
+        # param validation
+        params = command["default"]
+        params.update(args)
 
-    if not set(command["required"]).issubset(params):
-        print command["required"]
-        raise RuntimeError('required parameters missing')
-    client.run(command['name'], params)
+        if not set(command["required"]).issubset(params):
+            print command["required"]
+            raise RuntimeError('required parameters missing')
+
+        client.run(command['name'], params)
     exit(0)
