@@ -21,13 +21,17 @@ UCloud(CloudStack) Python Client
 ### 환경 설정
 
 * 파일에 직접 수정
+
 ** Client.py 를 열어서 API_KEY 와 SECRET 을 수정 하거나, 환경 변수로 설정 할수 있다.
 
 * 환경 변수로 설정
+
 ** API/SECRET Key 설정: UCLOUD_API_KEY, UCLOUD_SECRET 가 환경 변수로 설정 되어 있으면 해당 값을 읽어서 씁니다. (export 또는 윈도에서 set 으로 설정 하면 됩니다)
+
 ** 출력 형식 지정: 기본은 JSON 출력이나, XML 출력을 하고 싶으면 환경변수에 UCLOUD_RESP_TYPE 를 xml 로 세팅 해주시면 됩니다.
 
 * 코드로 실행 하는 경우, 파라미터로 넘겨 주는 방법
+
 ** ``` client  = UClient.UClient(api_type="package", api_key=UCLOUD_API_KEY, secret=UCLOUD_SECRET) ``` 와 같이 파라미터로 넘겨줌
 
 
