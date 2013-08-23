@@ -55,9 +55,13 @@ resp = client.run("Command", params) # POST를 쓰지 않는 경우
 
 유클라우드 Package API 지원이 추가 되었습니다. (2013. 08. 19)
 
+유클라우드 전체 API 지원이 추가 되었습니다. (2013. 08. 23)
+
 ### 기본값 지정을 통한 편리한 사용
 
 `commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 kr-1b 존에 `Ubuntu 11.04 32bit, 1vCore, 1GB RAM, 100GB Disk` 시간제 요금이 들어가 있습니다.
+
+`commands.py` 에 명시 되어 있지 않은 명령어도 실행에는 문제가 없으며 API 문서를 보고 적절한 파라미터를 명시하면 명령어를 사용할수 있습니다.
 
 ### 사용자 포럼
 
@@ -71,7 +75,10 @@ resp = client.run("Command", params) # POST를 쓰지 않는 경우
 
 0.3A : 2013. 02. 20
 
-0.3A-Forked-ziozzang : 2013. 08. 19
+0.3A-Forked-ziozzang-v1 : 2013. 08. 19
+
+0.3A-Forked-ziozzang-v2 : 2013. 08. 23
+
 
 [채널바로가기]( http://www.ironbag.net/channel/00287799451678010)
 ===
