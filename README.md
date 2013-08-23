@@ -16,6 +16,47 @@ UCloud(CloudStack) Python Client
 
     python UClient.py waf listWAFs
     
+
+
+### 환경 설정
+
+* 파일에 직접 수정
+** Client.py 를 열어서 API_KEY 와 SECRET 을 수정 하거나, 환경 변수로 설정 할수 있다.
+
+* 환경 변수로 설정
+** API/SECRET Key 설정: UCLOUD_API_KEY, UCLOUD_SECRET 가 환경 변수로 설정 되어 있으면 해당 값을 읽어서 씁니다. (export 또는 윈도에서 set 으로 설정 하면 됩니다)
+** 출력 형식 지정: 기본은 JSON 출력이나, XML 출력을 하고 싶으면 환경변수에 UCLOUD_RESP_TYPE 를 xml 로 세팅 해주시면 됩니다.
+
+* 코드로 실행 하는 경우, 파라미터로 넘겨 주는 방법
+** ``` client  = UClient.UClient(api_type="package", api_key=UCLOUD_API_KEY, secret=UCLOUD_SECRET) ``` 와 같이 파라미터로 넘겨줌
+
+
+
+### 커맨드 라인으로 실행
+
+```
+./UClient.py [api_type] [command] [params1] [param2]...
+```
+기본 실행 형식입니다.
+
+ 
+
+예를들어 zoneID 를 얻는 API는 다음과 같습니다.
+
+관련 API 문서 http://developer.ucloudbiz.olleh.com/doc/cloudstack/etc/listZones/
+```
+./UClient.py server listZones
+``` 
+
+ 
+
+예를들어 WAF 생성 API 는 다음과 같습니다.
+
+관련 API 문서 http://developer.ucloudbiz.olleh.com/doc/waf/WAF/createWAF-A/
+```
+./UClient.py waf name=wafname type=single spec=basic zoneid=9845bd17-d438-4bde-816d-1b12f37d5080 waf1consoleport=5950 waf1SSHport=5951 waf1DBport=5952
+```
+
 ### 코드로 사용하기
 
 파이썬 모듈로 사용할때에는 다음과 같이 사용하면 됩니다.
@@ -33,6 +74,31 @@ post_data = {
 }
 resp = client.run("Command", params, post=post_data) # POST 로 넘기는 경우
 resp = client.run("Command", params) # POST를 쓰지 않는 경우
+```
+
+
+### API 타입 목록
+중간에 들어가는 api_type 은 다음을 확인해주시면 됩니다.
+
+종류 | API 타입 | 매뉴얼/가이드 | API 주소
+--- | --- | --- | ---
+AutoScaling	| as | http://developer.ucloudbiz.olleh.com/doc/autoscaling/ | https://api.ucloudbiz.olleh.com/autoscaling/v1/client/api
+CDN | cdn | http://developer.ucloudbiz.olleh.com/doc/CDN/ | https://api.ucloudbiz.olleh.com/cdn/v1/client/api
+Loadbalancer | lb | http://developer.ucloudbiz.olleh.com/doc/loadbalancer/ | https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api
+Messaging | msg | http://developer.ucloudbiz.olleh.com/doc/messaging/ | https://api.ucloudbiz.olleh.com/messaging/v1/client/api
+NAS Service | nas | http://developer.ucloudbiz.olleh.com/doc/nas/ | https://api.ucloudbiz.olleh.com/nas/v1/client/api
+Packaging | package | http://developer.ucloudbiz.olleh.com/doc/packaging/ | https://api.ucloudbiz.olleh.com/packaging/v1/client/api
+Server/CloudStack | server | http://developer.ucloudbiz.olleh.com/doc/cloudstack/ | https://api.ucloudbiz.olleh.com/server/v1/client/api
+uCloud DB/RDBAAS | db | http://developer.ucloudbiz.olleh.com/doc/DB/ | https://api.ucloudbiz.olleh.com/db/v1/client/api
+Watch | watch | http://developer.ucloudbiz.olleh.com/doc/watch/ | https://api.ucloudbiz.olleh.com/watch/v1/client/api
+Web Application Firewall | waf | http://developer.ucloudbiz.olleh.com/doc/waf/ | https://api.ucloudbiz.olleh.com/waf/v1/client/api
+
+
+### 디버깅 방법
+현재 디버깅은 코드로 작성 하는 경우에만 지원 합니다. 파라미터를 넣어 실행할때에 debug=True 로 실행 해주면 됩니다.
+
+```
+client.run(.... , debug=True)
 ```
 
 ### 주의사항
