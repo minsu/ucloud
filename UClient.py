@@ -72,8 +72,12 @@ def usage_out():
     print "         api_type : server or lb(loadbalancer) or waf or watch or package"
 
 if __name__ == "__main__":
-
     import sys
+    import os
+
+    UCLOUD_RESP_TYPE = "json"
+    if "UCLOUD_RESP_TYPE" in os.environ:
+        UCLOUD_RESP_TYPE = os.environ["UCLOUD_RESP_TYPE"]
 
     if len(sys.argv) < 3:
         usage_out()
@@ -93,7 +97,7 @@ if __name__ == "__main__":
         params = {}
         params.update(args)
         
-        client.run(sys.argv[2], params)
+        client.run(sys.argv[2], params, resptype=UCLOUD_RESP_TYPE)
 
     else:
         # param validation
@@ -104,5 +108,5 @@ if __name__ == "__main__":
             print command["required"]
             raise RuntimeError('required parameters missing')
 
-        client.run(command['name'], params)
+        client.run(command['name'], params, resptype=UCLOUD_RESP_TYPE)
     exit(0)
