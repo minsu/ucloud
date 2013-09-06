@@ -59,6 +59,11 @@ class Client(object):
         args['command']  = command
         args['response'] = resptype
         args['apiKey']   = self.api_key
+        
+        # For safty reason, force Quote some character.
+        for i in args.keys():
+            args[i] = args[i].replace("%", "%26")
+            args[i] = args[i].replace("/", "%2f")
 
         query = '&'.join(
             '='.join([k, quote(args[k])]) for k in sorted(args.keys(), key=str.lower))
