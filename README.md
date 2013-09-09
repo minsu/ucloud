@@ -11,6 +11,16 @@ The Python Commandline Tool & library for UCloud.
 
 ### Installation Note
 
+* PIP으로 설치 하는 경우
+
+라이브러리로 사용 할경우에는 pip/PyPI로 설치 하면 됩니다.
+
+```
+pip install ucloud
+```
+
+* Git 으로 클론 하기.
+
 별도 설치없이 Git 클론한 후에 해당 폴더에서 명령을 실행하거나 해당 파이썬 모듈을 `import UClient` 한 후에 사용합니다. 명령어 실행은 다음의 Example과 같이 Command Line 환경에서 실행 합니다.
 
     python UClient.py server listVirtualMachines
@@ -23,7 +33,6 @@ The Python Commandline Tool & library for UCloud.
     python UClient.py waf listWAFs
     
 
-파이썬 라이브러리로 사용 하는 경우에는 ```pip install ucloud``` 로 설치 하면 됩니다.
 
 ### 환경 설정
 
