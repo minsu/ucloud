@@ -23,6 +23,7 @@ The Python Commandline Tool & library for UCloud.
     python UClient.py waf listWAFs
     
 
+파이썬 라이브러리로 사용 하는 경우에는 ```pip install ucloud``` 로 설치 하면 됩니다.
 
 ### 환경 설정
 
@@ -69,7 +70,7 @@ The Python Commandline Tool & library for UCloud.
 
 ```
 import json
-import UClient
+from ucloud import UClient
 
 client = UClient.UClient(api_type="server", api_key="API_KEY_HERE", secret="SECRET_KEY_HERE")
 params = {
@@ -130,6 +131,8 @@ client.run(.... , debug=True)
 
 유클라우드 전체 API 지원이 추가 되었습니다. (2013. 08. 23)
 
+PIP/PyPI 에서 설치가 가능합니다. (2013. 09. 09)
+
 ### 기본값 지정을 통한 편리한 사용
 
 `commands.py` 에 명시되어 있는 각 명령에는 `default` 라는 Dictionary 데이터가 있습니다. 기본 값으로 지정할 경우 명령창에서 별도로 지정하지 않는 한 해당 `default` 값이 사용됩니다. 현재 `deployVirtualMachine` 명령의 기본값은 kr-1b 존에 `Ubuntu 11.04 32bit, 1vCore, 1GB RAM, 100GB Disk` 시간제 요금이 들어가 있습니다.
@@ -149,3 +152,4 @@ client.run(.... , debug=True)
 
 0.3A-Forked-ziozzang-v3 : 2013. 08. 23
 
+1.0 : 2013. 09. 09
