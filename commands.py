@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 #
 # Copyright 2012 Netsco Inc.
+# Copyright 2013 Jioh L. Jung (ziozzang@gmail.com)
 
 COMMANDS = {
 
@@ -419,5 +420,111 @@ COMMANDS = {
         ),
     },
 
+    #-------------------------------------------------------
+    # Package Resource
+    #-------------------------------------------------------
+    "listPackages": {
+        "name"     : "listPackages",
+        "default"  : {},
+        "required" : (),
+    },
 
+    "createPackage": {
+        "name"     : "createPackage",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "deletePackage": {
+        "name"     : "deletePackage",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "describePackages": {
+        "name"     : "describePackages",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "describePackageEvents": {
+        "name"     : "describePackageEvents",
+        "default"  : {},
+        "required" : (),
+    },
+
+    "describePackageResources": {
+        "name"     : "describePackageResources",
+        "default"  : {},
+        "required" : (),
+    },
+
+    "getTemplate": {
+        "name"     : "getTemplate",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "listPackageResources": {
+        "name"     : "listPackageResources",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "registerUserSignal": {
+        "name"     : "registerUserSignal",
+        "default"  : {},
+        "required" : (
+            "PackageName",
+        ),
+    },
+
+    "listTemplates": {
+        "name"     : "listTemplates",
+        "default"  : {},
+        "required" : (),
+    },
+
+    "describeTemplate": {
+        "name"     : "describeTemplate",
+        "default"  : {},
+        "required" : (
+            "TemplateId",
+        ),
+    },
+
+    "deleteTemplate": {
+        "name"     : "deleteTemplate",
+        "default"  : {},
+        "required" : (
+            "TemplateId",
+        ),
+    },
+
+    "uploadTemplate": {
+        "name"     : "uploadTemplate",
+        "default"  : {},
+        "required" : (
+            "TemplateName",
+            "TemplateBody",
+        ),
+    },
+
+    "validateTemplate": {
+        "name"     : "validateTemplate",
+        "default"  : {},
+        "required" : (
+            "TemplateId",
+        ),
+    },
 }
