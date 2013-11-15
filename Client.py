@@ -4,23 +4,46 @@
 #
 # Copyright 2012 Netsco Inc.
 # Copyright 2012 Minsu Kang
+# Copyright 2013 Jioh L. Jung
 
-from urllib import quote_plus as quote
-from urllib2 import urlopen, HTTPError
+from urllib import quote
+from urllib2 import urlopen, Request, HTTPError
 from base64 import b64encode
 
 import hmac
 import hashlib
 import json
 import re
+import os
 
 UCLOUD_API_KEY = 'YOU_MUST_ENTER_YOUR_API_KEY_HERE_!'
 UCLOUD_SECRET  = 'YOU_MUST_ENTER_YOUR_SECRET_KEY_HERE_!'
+if "UCLOUD_API_KEY" in os.environ:
+    UCLOUD_API_KEY = os.environ["UCLOUD_API_KEY"]
+if "UCLOUD_SECRET" in os.environ:
+    UCLOUD_SECRET = os.environ["UCLOUD_SECRET"]
+
 UCLOUD_API_URLS = {
+    # Server/CloudStack http://developer.ucloudbiz.olleh.com/doc/cloudstack/
     'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
+    # Loadbalancer http://developer.ucloudbiz.olleh.com/doc/loadbalancer/
     'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
+    # Web Application Firewall http://developer.ucloudbiz.olleh.com/doc/waf/
     'waf'    : 'https://api.ucloudbiz.olleh.com/waf/v1/client/api',
+    # Watch http://developer.ucloudbiz.olleh.com/doc/watch/
+    'watch'  : 'https://api.ucloudbiz.olleh.com/watch/v1/client/api',
+    # Packaging http://developer.ucloudbiz.olleh.com/doc/packaging/
+    'package': 'https://api.ucloudbiz.olleh.com/packaging/v1/client/api',
+    # AutoScaling http://developer.ucloudbiz.olleh.com/doc/autoscaling/
+    'as'     : 'https://api.ucloudbiz.olleh.com/autoscaling/v1/client/api',
+    # CDN http://developer.ucloudbiz.olleh.com/doc/CDN/
+    'cdn'    : 'https://api.ucloudbiz.olleh.com/cdn/v1/client/api',
+    # Messaging http://developer.ucloudbiz.olleh.com/doc/messaging/
+    'msg'    : 'https://api.ucloudbiz.olleh.com/messaging/v1/client/api',
+    # NAS Service http://developer.ucloudbiz.olleh.com/doc/nas/
     'nas'    : 'https://api.ucloudbiz.olleh.com/nas/v1/client/api',
+    # uCloud DB/RDBAAS http://developer.ucloudbiz.olleh.com/doc/DB/
+    'db'     : 'https://api.ucloudbiz.olleh.com/db/v1/client/api',
 }
 
 class Client(object):
@@ -29,22 +52,34 @@ class Client(object):
         self.api_key = api_key
         self.secret  = secret
 
-    def request(self, command, args={}):
+    def request(self, command, args={}, post=None, debug=False, resptype="json"):
         if not command:
             raise RuntimeError('Command Missing !!')
 
         args['command']  = command
-        args['response'] = 'json'
+        args['response'] = resptype
         args['apiKey']   = self.api_key
+        
+        # For safty reason, force Quote some character.
+        for i in args.keys():
+            args[i] = args[i].replace("%", "%26")
+            args[i] = args[i].replace("/", "%2f")
 
         query = '&'.join(
-            '='.join([k, quote(args[k])]) for k in sorted(args.keys()))
+            '='.join([k, quote(args[k])]) for k in sorted(args.keys(), key=str.lower))
         
         signature = b64encode(hmac.new(
                 self.secret,
                 msg=query.lower(),
                 digestmod=hashlib.sha1
         ).digest())
+
+        if debug:
+            print "Server: '%s'" % (self.api_url)
+            print "Query (for Signiture):"
+            print query
+            print "Sigature:"
+            print signature
 
         #-------------------------------------------------------
         # reconstruct : command + params + api_key + signature
@@ -60,14 +95,38 @@ class Client(object):
 
         query += '&' + api_key
         query += '&signature=' + quote(signature)
+
+        if debug:
+            print "Query (Reconstructed/LEN: %d):" % len(query)
+            print query
         #-------------------------------------------------------
 
+        urls = self.api_url + '?' + query
+        if post is not None:
+            post_enc = '&'.join(
+                '='.join([k, quote(post[k])]) for k in sorted(post.keys()))
+            req_data = Request(urls, post_enc)
+            req_data.add_header('Content-type', 'application/x-www-form-urlencoded')
+            if debug:
+                print "POST(DICT/LEN: %d): " % (len(post)) , post
+                print "POST(Encrypted/LEN: %d): " % (len(post_enc)) , post_enc
+                print "HEADERS: ", req_data.headers
+        else:
+            req_data = Request(urls)
+
         try:
-            response = urlopen(self.api_url + '?' + query)
+            response = urlopen(req_data)
         except HTTPError as e:
+            # Printing Debugging Indformation.
+            print e.read()
             raise RuntimeError("%s" % e)
 
-        decoded  = json.loads(response.read())
+        content = response.read()
+
+        if resptype != "json":
+            return content
+
+        decoded  = json.loads(content)
 
         # response top node check
         response_header = command.lower() + 'response'
