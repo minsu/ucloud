@@ -20,6 +20,7 @@ UCLOUD_API_URLS = {
     'server' : 'https://api.ucloudbiz.olleh.com/server/v1/client/api',
     'lb'     : 'https://api.ucloudbiz.olleh.com/loadbalancer/v1/client/api',
     'waf'    : 'https://api.ucloudbiz.olleh.com/waf/v1/client/api',
+    'nas'    : 'https://api.ucloudbiz.olleh.com/nas/v1/client/api',
 }
 
 class Client(object):

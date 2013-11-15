@@ -99,6 +99,12 @@ COMMANDS = {
         "required" : (),
     },
 
+    "getVolumeUsage": {
+        "name"     : "getVolumeUsage",
+        "default"  : {},
+        "required" : ("id",),
+    },
+
     #-------------------------------------------------------
     # Load Balanacing
     #-------------------------------------------------------
