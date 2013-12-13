@@ -1,10 +1,8 @@
-UCloud(CloudStack) Python Client
-===
+# KT UCloud Python Client
 
-* Original Code from https://github.com/minsu/ucloud
-* Forked and Revised by Jioh L. Jung (ziozzang@gmail.com)
+**Currently maintained by Jioh L. Jung (ziozzang@gmail.com)**
 
-The Python Commandline Tool & library for UCloud.
+"ucloud" is a command line provisioning toolkit for KT Ucloud services.
 
 유클라우드 서버 API를 이용한 파이썬 클라이언트 라이브러리 및 Command Line 유틸리티 프로그램입니다.
 
@@ -64,11 +62,10 @@ pip install ucloud
 ./UClient.py server listZones
 ``` 
 
- 
-
 예를들어 WAF 생성 API 는 다음과 같습니다.
 
 관련 API 문서 http://developer.ucloudbiz.olleh.com/doc/waf/WAF/createWAF-A/
+
 ```
 ./UClient.py waf name=wafname type=single spec=basic zoneid=9845bd17-d438-4bde-816d-1b12f37d5080 waf1consoleport=5950 waf1SSHport=5951 waf1DBport=5952
 ```
@@ -77,7 +74,7 @@ pip install ucloud
 
 파이썬 모듈로 사용할때에는 다음과 같이 사용하면 됩니다.
 
-```
+``` python
 import json
 from ucloud import UClient
 
@@ -113,7 +110,7 @@ Web Application Firewall | waf | http://developer.ucloudbiz.olleh.com/doc/waf/ |
 ### 디버깅 방법
 현재 디버깅은 코드로 작성 하는 경우에만 지원 합니다. 파라미터를 넣어 실행할때에 debug=True 로 실행 해주면 됩니다.
 
-```
+``` python
 client.run(.... , debug=True)
 ```
 
@@ -151,7 +148,7 @@ PIP/PyPI 에서 설치가 가능합니다. (2013. 09. 09)
 
 ### 버전
 
-0.1A : 2012. 03. 19 Release
+0.1A : 2012. 03. 19 Initial Release by MSK(minsu@netsco.kr)
 
 0.2A : 2012. 11. 13
 
